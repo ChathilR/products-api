@@ -23,14 +23,15 @@ public class HelloController {
         return "Hello from Spring Boots!";
     }
 
-    @GetMapping("/status")
-    public String status(){
-        return "API running -" + LocalDate.now().toString();
-    }
 
     @GetMapping("/goodbye")
     public String goodbye(){
         return "Goodbye from Spring Boot!";
+    }
+
+    @GetMapping("/status")
+    public String status(){
+        return LocalDate.now().toString();
     }
 
 
