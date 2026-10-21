@@ -12,6 +12,12 @@ public class ProductService {
     private List<Product> products = new ArrayList<>();
     private Long nextId = 1L;
 
+    public ProductService(){
+        products.add(new DigitalProduct(nextId++, "E-book", 9.99, "/dl/1", 4.2));
+        products.add(new PhysicalProduct(nextId++, "Monitor", 249.99, 5.4, "60x40"));
+    }
+    // Both subclasses inherit id, name, price and their getters from Product, so Jackson includes them in the JSON.
+
     public List<Product> getAllProducts() {
         return products;
     }
