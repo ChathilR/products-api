@@ -3,7 +3,7 @@ package uk.ac.westminster.products_api;
 // A PhysicalProduct IS-A Product because it inherits the common properties and behaviours of Product.
 
 
-public class DigitalProduct extends Product {
+public class DigitalProduct extends Product implements Discountable {
 
     private String downloadUrl;
     private double fileSizeMB;
@@ -29,4 +29,22 @@ public class DigitalProduct extends Product {
         return fileSizeMB;
     }
 
+    //   @Override
+    public String getSummary(){
+        return "Product : " + getName() + "| Price : " + getPrice() + " | Download URL : " + getDownloadUrl();
+    }
+
+
+    private double discountedPrice;
+
+    @Override
+    public void applyDiscount(double rate) {
+        discountedPrice = getPrice() * (1 - rate);
+    }
+
+    @Override
+    public double getDiscountedPrice() {
+        applyDiscount(0.2);
+        return discountedPrice;
+    }
 }

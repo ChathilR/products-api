@@ -13,7 +13,7 @@ public class ProductService {
     private Long nextId = 1L;
 
     public ProductService(){
-        products.add(new DigitalProduct(nextId++, "E-book", 9.99, "/dl/1", 4.2));
+        products.add(new DigitalProduct(nextId++, "E-book", 10, "/dl/1", 4.2));
         products.add(new PhysicalProduct(nextId++, "Monitor", 249.99, 5.4, "60x40"));
     }
     // Both subclasses inherit id, name, price and their getters from Product, so Jackson includes them in the JSON.
@@ -42,6 +42,16 @@ public class ProductService {
         return products.stream()
                 .filter(p ->p.getName().equals(name))
                 .toList();
+    }
+
+    public List<String> getAllSummaries(){
+
+        List<String> summaries = new ArrayList<>();
+
+        for (Product p : products){
+            summaries.add(p.getSummary());
+        }
+        return summaries;
     }
 
 }
